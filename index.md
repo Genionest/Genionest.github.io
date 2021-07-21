@@ -8,5 +8,5 @@
 反正就先这样了，
 以后由机会再补充吧！
 <table border="0">
-  <img src="">
+  <img src="images/img1.jpg">
 </table>
