@@ -6,7 +6,7 @@
 
 暂时还不知道写啥，
 反正就先这样了，
-以后由机会再补充吧！
+以后有机会再补充吧！
 <table border="0">
   <img src="images/img1.jpg">
 </table>
