@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.6.0.js"></script>
+    <style type="text/css">
+        body{  
+            margin: 0; /*消除body中的留白*/
+            padding: 0;
+            text-align: center;
+        }
+        .container{
+            width: 1500px;
+            margin: 0 auto; /*侧边自动值与宽度结合使用，可以将布局居中对齐*/
+            text-align: left;
+        }
+        .header{
+            padding: 10px 0;
+        }
+        .sidebar{
+            float: left; /*侧边栏居左*/
+            width: 200px;
+        }
+        .maincontent{
+            width: 570px;
+        }
+        .footer{
+            clear: both; /*消除前后的浮动元素，使页脚显示在其下方*/
+            position: relative;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>网页头部</h1>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <!-- <button onclick="page1()">button</button> -->
+                <button class="btn1">button</button>
+                <h1>侧边栏</h1>
+                <h1>侧边栏</h1>
+            </div>
+            <div class="maincontent">
+                <div class="maincontent-text">
+                    内容
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <h1>脚注</h1>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $(".btn1").click(function(){
+                    // var t = $.ajax({
+                    //     url: "data/page1.txt",
+                    //     async: false,
+                    // });
+                    // $(".maincontent-text").html(t.responseText);
+                    // alert(t.responseText);
+                    $.get('data/page1.txt').success(function(content){
+                        alert(content);
+                    });
+                })
+            })
+            // function page1(){
+                // document.getElementsByClassName("maincontent-text")[0].innerHTML = "第一章内容";
+                // document.getElementById("maincontent-text").innerHTML = "第一章内容";
+                // $(document).ready(function(){
+                //     // $(".maincontent-text").load("data/page1.txt");
+                    
+                // })
+            // }
+        </script>
+    </div>    
+</body>
+</html>
