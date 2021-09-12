@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome to Genionest Page</title>
     <script src="js/jquery-3.6.0.js"></script>
     <style type="text/css">
         body{  
@@ -41,9 +41,7 @@
         </div>
         <div class="content">
             <div class="sidebar">
-                <button class="btn1">button</button>
-                <h1>侧边栏</h1>
-                <h1>侧边栏</h1>
+                <h3 class="sidebar-title">目录</h3>
             </div>
             <div class="maincontent">
                 <div class="maincontent-text">
@@ -54,17 +52,30 @@
         <div class="footer">
             <h1>脚注</h1>
         </div>
-
         <script>
             $(document).ready(function(){
-                $(".btn1").click(function(){
+                var length = 3;
+                function get_txt(n){
                     var t = $.ajax({
-                        url: "data/page1.txt",
+                        url: "data/page"+n+".txt",
                         async: false,
                     });
                     $(".maincontent-text").html(t.responseText);
-                    // alert(t.responseText);
-                })
+                    // alert(n);
+                };
+                for (var i=1;i<=length;i++){ 
+                    var name = "page"+i; 
+                    $(".sidebar").append("<div class=\"page"+i+"\">第"+i+"章</div><br>");
+                    // $(".page"+i).click(function(){get_txt(i)});
+                }
+                // $(".sidebar-title").click(function(){
+                //     for(var i=1;i<=length;i++){
+                //         $(".page"+i).slideToggle();
+                //     }
+                // })
+                $(".page1").click(function(){get_txt(1)});
+                $(".page2").click(function(){get_txt(2)});
+                $(".page3").click(function(){get_txt(3)});
             })
         </script>
     </div>    
