@@ -5,79 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Genionest Page</title>
+    <link href="css.css" rel="stylesheet">
     <script src="js/jquery-3.6.0.js"></script>
-    <style type="text/css">
-        body{  
-            margin: 0; /*消除body中的留白*/
-            padding: 0;
-            text-align: center;
-        }
-        .container{
-            width: 1500px;
-            margin: 0 auto; /*侧边自动值与宽度结合使用，可以将布局居中对齐*/
-            text-align: left;
-        }
-        .header{
-            padding: 10px 0;
-        }
-        .sidebar{
-            float: left; /*侧边栏居左*/
-            width: 200px;
-        }
-        .maincontent{
-            width: 570px;
-        }
-        .footer{
-            clear: both; /*消除前后的浮动元素，使页脚显示在其下方*/
-            position: relative;
-            padding: 10px 0;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>网页头部</h1>
+            <h1>Wargon的空间</h1>
         </div>
         <div class="content">
             <div class="sidebar">
                 <h3 class="sidebar-title">目录</h3>
             </div>
             <div class="maincontent">
-                <div class="maincontent-text">
-                    内容
-                </div>
+                内容
             </div>
         </div>
         <div class="footer">
-            <h1>脚注</h1>
+            <h1>版权归wargon所有</h1>
         </div>
-        <script>
-            $(document).ready(function(){
-                var length = 3;
-                function get_txt(n){
-                    var t = $.ajax({
-                        url: "data/page"+n+".txt",
-                        async: false,
-                    });
-                    $(".maincontent-text").html(t.responseText);
-                    // alert(n);
-                };
-                for (var i=1;i<=length;i++){ 
-                    var name = "page"+i; 
-                    $(".sidebar").append("<div class=\"page"+i+"\">第"+i+"章</div><br>");
-                    // $(".page"+i).click(function(){get_txt(i)});
-                }
-                // $(".sidebar-title").click(function(){
-                //     for(var i=1;i<=length;i++){
-                //         $(".page"+i).slideToggle();
-                //     }
-                // })
-                $(".page1").click(function(){get_txt(1)});
-                $(".page2").click(function(){get_txt(2)});
-                $(".page3").click(function(){get_txt(3)});
-            })
-        </script>
     </div>    
+    <script src="js/book.js"></script>
 </body>
 </html>
