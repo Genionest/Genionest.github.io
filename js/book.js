@@ -15,7 +15,15 @@ $(document).ready(function(){
             get_txt(n);
         });
     }
-    create_button(1, "关于以前");
-    create_button(2, "关于现在");
-    create_button(3, "关于未来");
+    var book = [
+        "所需课程",
+        "NCRE相关",
+        "考研相关",
+    ];
+
+    var i = 0;
+    while(book[i]){
+        create_button(i+1, book[i]);
+        i++;
+    }
 })
