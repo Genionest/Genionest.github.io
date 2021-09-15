@@ -33,11 +33,14 @@ body{
     border-style: solid;
     /* color: yellowgreen; */
 }
-.sidebar{
+.sidebar, .sidebar-right{
     float: left; /*侧边栏居左*/
     width: 200px;
     height: 600px;
     overflow: auto;
+}
+.sidebar-right{
+    float: right;
 }
 .maincontent{
     min-width: 570px;
@@ -62,13 +65,13 @@ body{
 .maincontent-txt{
     width: 570px;
 }
-.sidebar-title{
+.sidebar-title, .sidebar-right-title{
     /* background-color:coral; */
     background-color: yellowgreen;
     padding: 5px;
     color:black;
 }
-.page-btn{
+.page-btn, .sheet-btn{
     /* background-color:coral; */
     /* border-color:coral; */
     border-color: rgb(176, 255, 57);
