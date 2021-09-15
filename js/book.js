@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    // 目录在这里增加, 对应("page%d-%d.html", page, section)
+    // 目录在这里增加, 对应("page%d/section%d.html", page, section)
     var book = [
         [
             "C语言",
@@ -10,9 +10,10 @@ $(document).ready(function(){
         [
             "数据结构与算法",
             "1-1 插入排序",
-        ]
+        ],
     ];
-
+    
+    // 附录在这里增加, 对应("sheet%d/section%d.html", sheet, section)
     var book2 = [
         [
             "其他",

@@ -1,20 +1,38 @@
 <div class="maincontent-txt">
     <h1>插入排序</h1>
-    <pre>
+    <code><pre>
 void insertion_sort(int a[], int length){
     // 数组的值不超过一个，就不用排序了
-    if(length<=1)return;
+    if(length &lt; =1)return;
     // 每次整理索引为0-j的数
-    for(int j=1;j<length;j++){
+    for(int j=1;j &lt; length;j++){
         int key = a[j];
         int i=j-1;
-        while(i>=0&&a[i]>key){
-            a[i+1] = a[i];
+        while(i &gt;= 0&&a[i] &gt; key){
+            // j以前时排序好的数列
+            // 如果1~n-1位都不大于key，那么n~j-1位都大于key
+            a[i+1] = a[i];  // a[i]往后一位，给key腾地方
             i--;
         }
-        //因为上面i--了，所以这里相当于找出比a[j]大的a[i]，然后a[j]和a[i]互换
+        // a[i]&lt;=key时会退出，而a[i+1]在上面往后挪了一位，所以这里的a[i+1]就是key应该放的地方
         a[i+1] = key;
     }
 }
-    </pre>
+    </pre></code>
+    <h1>冒泡排序</h1>
+    <code><pre>
+void bubble_sort(int a[], int length){
+    int tmp = 0;
+    // 这个倒不用判断数组长度，因为长度不够下面的循环进不去
+    for(int i=0;i &lt; length-1;i++){
+        for(int j=i+1;j &gt; length;j++){
+            if(a[i] &gt; a[j]){
+                tmp = a[i];
+                a[i] = a[j];
+                a[j] = tmp;
+            }
+        }
+    }
+}
+    </pre></code>
 </div>
