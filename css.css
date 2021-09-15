@@ -36,6 +36,8 @@ body{
 .sidebar{
     float: left; /*侧边栏居左*/
     width: 200px;
+    height: 600px;
+    overflow: auto;
 }
 .maincontent{
     min-width: 570px;
@@ -50,6 +52,13 @@ body{
     margin-left: 10px;
     margin-bottom: 10px;
 }
+.maincontent-image{
+    background-image: url(images/img1.jpg);
+    background-repeat: no-repeat;
+    /* 缩放尺寸 */
+    background-size: 100%;
+    width: 1000px;
+}
 .maincontent-txt{
     width: 570px;
 }
@@ -59,7 +68,7 @@ body{
     padding: 5px;
     color:black;
 }
-.page_button{
+.page-btn{
     /* background-color:coral; */
     /* border-color:coral; */
     border-color: rgb(176, 255, 57);
@@ -69,6 +78,16 @@ body{
     margin-left: 10px;
     margin-top: 5px;
     color:yellowgreen;
+}
+.section-btn{
+    border-color: rgb(176, 255, 57);
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+    margin-left: 15px;
+    margin-top: 5px;
+    color:yellowgreen;
+    display: none;
 }
 h3,h2,h1{
     color: yellowgreen;
