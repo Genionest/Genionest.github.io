@@ -1,0 +1,45 @@
+<div class="maincontent-txt">
+    <h1>链表</h1>
+    <p><pre>
+<!-- 使用pre标签即可不忽略换行符 -->
+// 函数功能：输入一个数组（以及其长度），生成一串链表，输出链表的头指针
+
+struct Node{
+    int val;
+    struct Node *next;
+};
+typedef struct Node node;
+
+// 从尾接到头
+node* create_linked_list2(int list[], int length){
+    node* head = NULL;
+    for(int i=N-1;i>=0;i--){
+        node* p = (node*)malloc(sizeof(node));
+        p->val = list[i];
+        p->next = head;
+        head = p;
+    }
+    
+    return head;
+}
+
+// 从头接到尾
+node* create_linked_list(int list[], int length){
+    node* head = NULL;
+    node* tmp = NULL;
+    for(int i=0;i<length;i++){
+        node* p = (node*)malloc(sizeof(node));
+        p->next = NULL;
+        if(tmp != NULL){
+            tmp->next = p;
+        }
+        if(head == NULL){
+            head = p;
+        }
+        p->val = list[i];
+        tmp = p;
+    }
+    return head;
+}
+    </pre></p>
+</div>

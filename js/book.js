@@ -7,6 +7,12 @@ $(document).ready(function(){
             "NCRE相关",
             "考研相关",
         ],
+        [
+            "C语言",
+            "链表",
+            "交换两个int",
+            "一些字符串函数",
+        ],
     ];
 
     var bar = $(".sidebar");
