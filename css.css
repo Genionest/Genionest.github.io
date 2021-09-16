@@ -43,7 +43,7 @@ body{
     float: right;
 }
 .maincontent{
-    min-width: 570px;
+    min-width: 750px;
     min-height: 570px;
     /* border-color:chocolate; */
     border-color:yellowgreen;
@@ -63,7 +63,7 @@ body{
     width: 1000px;
 }
 .maincontent-txt{
-    width: 570px;
+    width: 750px;
 }
 .sidebar-title, .sidebar-right-title{
     /* background-color:coral; */
@@ -97,4 +97,5 @@ h3,h2,h1{
 }
 p,pre{
     color: white;
+    font-size: 20px;
 }
