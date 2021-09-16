@@ -1,0 +1,28 @@
+<div class="maincontent-txt">
+    <h1>二维平面绘图</h1>
+    <h3>绘制(0, 2*pi)处的y=sin(x)的图像</h3>
+    <code><pre>
+x = 0:0.01:2*pi;  % 带;可以让程序运行时不在终端输出其值
+y = sin(x);
+figure;  % 建立一个幕布
+plot(x, y);  % 绘制二维平面图像
+title('y = sin(x)');  % 设置标题
+xlabel('x');  % 设置x轴标签
+ylabel('sin(x)');  % 设置y轴标签
+xlim([0 2*pi]);  % 限制x的图像取值范围
+    </pre></code>
+    <h3>绘制两条函数曲线在同一图像中</h3>
+    <code><pre>
+x = 0:0.01:4*pi;
+y1 = sin(x);
+y2 = cos(x);
+figure;  % 建立一个幕布
+[AX, H1, H2] = plotyy(x, y1, x, y2, 'plot');  % 绘制两个函数的二维平面图像
+set(get(AX(1), 'Ylabel'), 'String', 'Sine');  % 设置y1的标签
+set(get(AX(2), 'Ylabel'), 'String', 'Cosine');  % 设置y2的标签
+xlabel('x');  % 设置x的标签
+title('Sine And Cosine');  % 设置标题
+set(H1, 'LineStyle', '--');  % 设置y1函数曲线的格式
+set(H2, 'LineStyle', ':');  % 设置y2函数曲线的格式
+    </pre></code>
+</div>

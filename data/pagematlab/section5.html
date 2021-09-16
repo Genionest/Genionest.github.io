@@ -1,0 +1,14 @@
+<div class="maincontent-txt">
+    <h1>三位立体绘图</h1>
+    <code><pre>
+t = 0:pi/50:10*pi;
+plot3(sin(t), cos(t), t);  % 绘制三位立体图像
+xlabel('sin(t)');
+ylabel('cos(t)');
+zlabel('t')
+grid on  % 绘制网格线
+% hold on 在同一张幕布当中可以继续绘制其他函数图像
+% hold off 和上面的效果相反
+axis square  % 将各个面的区域的投影都限制为正方形
+    </pre></code>
+</div>
