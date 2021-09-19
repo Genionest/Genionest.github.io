@@ -19,6 +19,7 @@ $(document).ready(function(){
         [
             ["数据结构与算法", "DandA"],  // 不能用&符号
             "1-1 插入排序",
+            "RAM",
         ],
     ];
     
@@ -29,6 +30,12 @@ $(document).ready(function(){
             "所需课程",
             "NCRE相关",
             "考研相关",
+        ],
+        [
+            ["web笔记", "weblog"],
+            "html-log 1",
+            "css-log 1",
+            "js-log 1",
         ],
     ]
 
