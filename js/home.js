@@ -20,14 +20,14 @@ $(document).ready(function(){
         var path = "data/navigation/"+menu[i][0]+".html";
         // 必须用函数的形式生成，否则path变量会保存为最后一次赋值的状态
         $("#"+menu[i][0]).click(function(){
-            // $(".home").css("color", "yellowgreen");
-            // $(this).css("color", "white");
-            // var t = $.ajax({
-            //     url: path,
-            //     async: false,
-            // });
-            // $(".maincontent").html(t.responseText);
-            alert(path);
+            $(".home").css("color", "yellowgreen");
+            $(this).css("color", "white");
+            var t = $.ajax({
+                url: path,
+                async: false,
+            });
+            $(".maincontent").html(t.responseText);
+            // alert(path);
         });
     }
 
