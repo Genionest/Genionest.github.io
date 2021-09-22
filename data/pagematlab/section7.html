@@ -1,0 +1,63 @@
+<div class="maincontent-txt">
+    <h1>一些数学问题的计算</h1>
+    <a href="https://zhuanlan.zhihu.com/p/356388941"><h3>
+        原内容链接
+    </h3></a><br>
+    <h3>求极限</h3>
+    <code><pre>
+        &lt;&lt;clc, clear
+        &lt;&lt;syms x;
+        &lt;&lt;y = (1+x)^(1/x);
+        &lt;&lt;limit(y, x, 0)  % 这个要输出，所以不加;
+        
+        ans = 
+        exp(1)
+    </pre></code>
+    <p>
+        求左极限<br>
+        &lt;&lt;limit(y, x, 0, 'left') <br>
+        求右极限<br>
+        &lt;&lt;limit(y, x, 0, 'right') <br>
+    </p>
+    <h3>求泰勒展开</h3>
+    <code><pre>
+        &lt;&lt;clc, clear;
+        &lt;&lt;syms x;
+        &lt;&lt;y = exp(-x);
+        &lt;&lt;taylor(y, x, 2, 'order', 4) % 2表示展开点
+
+        ans = 
+        exp(-2)-exp(-2)*(x-2)+(exp(-2)*(x-2)^2)/2-(exp(-2)*(x-2)^3)/6
+    </pre></code>
+    <h3>求不定积分</h3>
+    <code><pre>
+        &lt;&lt;clc, clear;
+        &lt;&lt;syms x f;
+        &lt;&lt;f = (3-x^2)^3;
+        &lt;&lt;ans = int(f, x)
+
+        ans = 
+        -x^7/7+(9*x^5)/5-9*x^3+27*x
+    </pre></code>
+    <h3>求定积分</h3>
+    <code><pre>
+        &lt;&lt;clc, clear;
+        &lt;&lt;syms x;
+        &lt;&lt;int(x*cos(x), 0, 1)
+
+        ans = cos(1)+sin(1)-1
+    </pre></code>
+    <h3>级数求和</h3>
+    <code><pre>
+        &lt;&lt;clc, clear;
+        &lt;&lt;syms n k;
+        &lt;&lt;f = 1/(k*(k+1));
+        &lt;&lt;s = symsum(f, k, 1, n)
+
+        s = 1-1/(n+1)
+    </pre></code>
+    <h3>绘图</h3>
+    <code><pre>
+        &lt;&lt;ezplot('x^3+y^3-3*x*y')
+    </pre></code>
+</div>

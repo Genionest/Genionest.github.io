@@ -99,3 +99,13 @@ p, pre{
     color: white;
     font-size: 20px;
 }
+.navigation{
+    height: 0;
+    color: yellowgreen;
+    font-size: 20px;
+    position: relative;
+}
+/* #home{
+    left: 280px;
+    bottom: 55px;
+} */

@@ -15,6 +15,7 @@ $(document).ready(function(){
             "二维平面绘图",
             "三维立体绘图",
             "导出图像",
+            "数学计算",
         ],
         [
             ["数据结构与算法", "DandA"],  // 不能用&符号
@@ -33,9 +34,9 @@ $(document).ready(function(){
         ],
         [
             ["web笔记", "weblog"],
-            "html-log 1",
-            "css-log 1",
-            "js-log 1",
+            "html-log-1",
+            "css-log1-1",
+            "js-log-1",
         ],
     ]
 
@@ -88,11 +89,9 @@ $(document).ready(function(){
 
     var i = 0;
     while(book[i]){
-        // create_page(i+1, book[i][0]);
         create_page(book[i][0][1], book[i][0][0]);
         var j=1;
         while(book[i][j]){
-            // create_page_section(i+1, j, book[i][j]);
             create_page_section(book[i][0][1], j, book[i][j]);
             j++;
         }
@@ -100,11 +99,9 @@ $(document).ready(function(){
     }
     i = 0;
     while(book2[i]){
-        // create_sheet(i+1, book2[i][0]);
         create_sheet(book2[i][0][1], book2[i][0][0]);
         var j=1;
-        while(book[i][j]){
-            // create_sheet_section(i+1, j, book2[i][j]);
+        while(book2[i][j]){
             create_sheet_section(book2[i][0][1], j, book2[i][j]);
             j++;
         }
