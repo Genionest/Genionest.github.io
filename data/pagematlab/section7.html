@@ -5,59 +5,65 @@
     </h3></a><br>
     <h3>求极限</h3>
     <code><pre>
-        &lt;&lt;clc, clear
-        &lt;&lt;syms x;
-        &lt;&lt;y = (1+x)^(1/x);
-        &lt;&lt;limit(y, x, 0)  % 这个要输出，所以不加;
+        &gt;&gt;clc, clear
+        &gt;&gt;syms x;
+        &gt;&gt;y = (1+x)^(1/x);
+        &gt;&gt;limit(y, x, 0)  % 这个要输出，所以不加;
         
         ans = 
         exp(1)
     </pre></code>
     <p>
-        求左极限<br>
-        &lt;&lt;limit(y, x, 0, 'left') <br>
-        求右极限<br>
-        &lt;&lt;limit(y, x, 0, 'right') <br>
+        求左极限
     </p>
+    <code><pre>
+        &gt;&gt;limit(y, x, 0, 'left')
+    </pre></code>
+    <p>
+        求右极限
+    </p>
+    <code><pre>
+        &gt;&gt;limit(y, x, 0, 'right')
+    </pre></code>
     <h3>求泰勒展开</h3>
     <code><pre>
-        &lt;&lt;clc, clear;
-        &lt;&lt;syms x;
-        &lt;&lt;y = exp(-x);
-        &lt;&lt;taylor(y, x, 2, 'order', 4) % 2表示展开点
+        &gt;&gt;clc, clear;
+        &gt;&gt;syms x;
+        &gt;&gt;y = exp(-x);
+        &gt;&gt;taylor(y, x, 2, 'order', 4) % 2表示展开点
 
         ans = 
         exp(-2)-exp(-2)*(x-2)+(exp(-2)*(x-2)^2)/2-(exp(-2)*(x-2)^3)/6
     </pre></code>
     <h3>求不定积分</h3>
     <code><pre>
-        &lt;&lt;clc, clear;
-        &lt;&lt;syms x f;
-        &lt;&lt;f = (3-x^2)^3;
-        &lt;&lt;ans = int(f, x)
+        &gt;&gt;clc, clear;
+        &gt;&gt;syms x f;
+        &gt;&gt;f = (3-x^2)^3;
+        &gt;&gt;ans = int(f, x)
 
         ans = 
         -x^7/7+(9*x^5)/5-9*x^3+27*x
     </pre></code>
     <h3>求定积分</h3>
     <code><pre>
-        &lt;&lt;clc, clear;
-        &lt;&lt;syms x;
-        &lt;&lt;int(x*cos(x), 0, 1)
+        &gt;&gt;clc, clear;
+        &gt;&gt;syms x;
+        &gt;&gt;int(x*cos(x), 0, 1)
 
         ans = cos(1)+sin(1)-1
     </pre></code>
     <h3>级数求和</h3>
     <code><pre>
-        &lt;&lt;clc, clear;
-        &lt;&lt;syms n k;
-        &lt;&lt;f = 1/(k*(k+1));
-        &lt;&lt;s = symsum(f, k, 1, n)
+        &gt;&gt;clc, clear;
+        &gt;&gt;syms n k;
+        &gt;&gt;f = 1/(k*(k+1));
+        &gt;&gt;s = symsum(f, k, 1, n)
 
         s = 1-1/(n+1)
     </pre></code>
     <h3>绘图</h3>
     <code><pre>
-        &lt;&lt;ezplot('x^3+y^3-3*x*y')
+        &gt;&gt;ezplot('x^3+y^3-3*x*y')
     </pre></code>
 </div>

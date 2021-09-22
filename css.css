@@ -43,7 +43,7 @@ body{
     float: right;
 }
 .maincontent{
-    min-width: 750px;
+    min-width: 1000px;
     min-height: 570px;
     /* border-color:chocolate; */
     border-color:yellowgreen;
@@ -92,7 +92,7 @@ body{
     color:yellowgreen;
     display: none;
 }
-h4,h3,h2,h1{
+h4,h3,h2,h1,a{
     color: yellowgreen;
 }
 p, pre{
