@@ -9,13 +9,13 @@ $(document).ready(function(){
         header.append("<div class='navigation' id='"+menu[i][0]+"'><b>"+menu[i][1]+"<b></div>");
 
         var x = 280+i*60;
-        $("#"+menu[i]).css({"left":x+"px", "bottom":"55px"});
-        $("#"+menu[i]).hover(function(){
+        $("#"+menu[i][0]).css({"left":x+"px", "bottom":"55px"});
+        $("#"+menu[i][0]).hover(function(){
             $(this).css("color", "white");
         }, function(){
             $(this).css("color", "yellowgreen");
         });
-        $("#"+menu[i]).click(function(){
+        $("#"+menu[i][0]).click(function(){
             // $(".home").css("color", "yellowgreen");
             // $(this).css("color", "white");
             var t = $.ajax({
