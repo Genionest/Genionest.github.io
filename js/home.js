@@ -19,7 +19,7 @@ $(document).ready(function(){
             // $(".home").css("color", "yellowgreen");
             // $(this).css("color", "white");
             var t = $.ajax({
-                url: "data/navigation/"+menu[i]+".html",
+                url: "data/navigation/"+menu[i][0]+".html",
                 async: false,
             });
             $(".maincontent").html(t.responseText);
