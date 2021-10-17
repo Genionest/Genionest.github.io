@@ -1,0 +1,47 @@
+<div class="maincontent-txt">
+    <h3>变量设置</h3>
+    <code><pre>
+set设置变量 /a表示算数运算
+set /a var = 1 + 2
+
+设置字符串
+set v = hello
+
+获取变量的值需要在变量两端加上%
+echo %var%
+
+前面带有@，cmd框里就不会显示这行命令
+@echo %var%
+    </pre></code>
+    <h3>重定向(将输出内容添加到文件)</h3>
+    <code><pre>
+在当前目录下生成a.txt，并将"a"写入a.txt
+echo "a" &gt; a.txt
+在当前目录下生成a.txt，并将"a"追加入a.txt
+echo "a" &gt;&gt; a.txt
+&lt; 是将左边的内容写入右边的文件
+&lt;&lt; 是将左边的内容追加入右边的文件
+    </pre></code>
+    <h3>与或以及多命令执行</h3>
+    <code><pre>
+echo "a" && echo "b"
+执行两个命令
+echo "a" && ech
+第一个执行，第二个报错
+ech && echo "a"
+第一个报错，第二个不执行
+echo "a" || echo "b"
+第一个执行，第二个不执行
+ech || echo "b"
+第一个报错，第二个执行
+（有短路机制）
+    </pre></code>
+    <h3>管道符号（前一个命令的输出等于后一个命令的输入）</h3>
+    <code><pre>
+显示当前目录下的所有文件
+dir
+显示当前目录下符合筛选条件（.txt结尾）的所有文件
+dir命令的输出作为find命令的输入
+dir | find ".txt"
+    </pre></code>
+</div>

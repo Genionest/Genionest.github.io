@@ -1,0 +1,41 @@
+<div class="maincontent-txt">
+    <h3>if-else结构</h3>
+    <code><pre>
+set v=hello
+if %v%==hello (
+    echo true
+) else (
+    echo false
+)
+
+else不可以换行，“(”后面的内容可以换行
+
+pause (按下任意键继续)
+
+pause>nul (按下任意键继续，但不会显示这句话，因为这句话输出到空设备中)
+    </pre></code>
+    <h3>for循环</h3>
+    <code><pre>
+遍历文件夹
+for /d %%变量名 in (路径/*) do 具体操作
+for /d %%a in (*) do echo %%a
+*表示当前目录下
+
+遍历文件
+for /r %%变量名 in (匹配规则) do 具体操作
+for /r %%a in (*.py) do echo %%a
+
+遍历数字
+for /L %%变量名 in (开始,不长,结束) do 具体操作
+for /L %%a in (1,1,20) do echo %%a
+
+遍历文件内容
+for /f %%变量名 in (文件名) do 具体操作
+for /f %%a in (a.bat) do echo %%a
+是按行遍历的
+    </pre></code>
+    <h3>判断文件存在</h3>
+    <code><pre>
+if exist C:a.txt (echo true) else (echo false)
+    </pre></code>
+</div>
