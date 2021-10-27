@@ -1,0 +1,105 @@
+<div class="maincontent-txt">
+    <h3>类的创建</h3>
+    <code><pre>
+-----------------
+#include &lt;iostream&gt;
+
+class A{
+public:
+    A(int i):i(i){};
+    void fn(){
+        cout &lt;&lt; this->i;
+    };
+private:
+    int i;
+}
+
+int main(){
+    A a(1);
+
+    a.fn();
+
+    return 0;
+}
+-----------------
+
+在一个工程内创建类，一般是需要3个文件
+一个头文件
+一个类的body文件
+一个main文件
+
+A.h 头文件里包括类的属性和类的方法的声明，用以给main文件引用
+不允许main文件直接引用实体文件A.cpp
+
+#ifndef _A_H_
+#define _A_H_
+// 标准头文件格式，防止多次声明
+
+----------------
+class A{
+public:
+    A(int a, int b);  // 构造函数
+    ~A();  // 析构函数，不能有参数
+    int a;
+    void fn();
+private:
+    int b;
+    void fn2();
+}
+
+#endif
+----------------
+
+A.cpp 类的实体文件，包括类的声明和类方法的具体实现
+----------------
+#include "A.h"
+#include &lt;iostrem&gt;
+using namespace std;
+
+A::A(int a, int b):a(a), b(b){}  // 初始化列表来初始化，不要在函数里赋值初始化
+
+A::~A(){}
+
+void A::fn(){
+    cout &lt;&lt; this-&gt;a;  // this就相当于这个类本身
+}
+
+void A::fn2(){
+    cout &lt;&lt; this-&gt;b;
+}
+---------------
+
+main文件，在main文件里创建main函数，include头文件
+
+---------------
+#include "A.h"
+
+int main(){
+    A a(1, 2);
+    a.fn();
+    a.fn2();
+    // 光是这样是不行的，A类的实体在A.cpp里，但这个文件并没有链接到A.cpp
+    
+    return 0;
+}
+---------------
+
+    </pre></code>
+
+    <h3>new和delete</h3>
+    <code><pre>
+new类似于malloc
+delete类似于free
+-----------------
+new MyClass a;
+delete a;
+-----------------
+delete只能删除new的对象
+
+对于delete[]的用法
+-----------------
+new MyClass[10] a;
+delete[] a;
+-----------------
+    </pre></code>
+</div>

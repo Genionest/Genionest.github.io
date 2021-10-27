@@ -1,0 +1,64 @@
+<div class="maincontent-txt">
+    <h3>类的继承</h3>
+    <code><pre>
+class A{
+public:
+    A(int ia):a(ia){};
+    int a;
+}
+
+class B: A{
+pubilc:
+    B(): A(1){};  // 启用父类的构造函数
+}
+    </pre></code>
+    
+    <h3>private, public, protect</h3>
+    <code><pre>
+private 自己可以访问（外面可以通过public函数访问）
+protect 自己和自己的后代可以访问
+public 所有人可以访问
+
+private的限制只对不同的类有效，同一个类的不同对象可以相互访问私有变量
+----------------
+class A{
+public:
+    A(int i):i(i){};
+    void set(A* a){
+        this-&gt;i = a-&gt;i;
+    };
+private:
+    int i;
+}
+
+int main(){
+    A a(2); A b(1);
+    b.set(&a);  // 此时在b的set内访问了a的私有变量i
+}
+----------------
+
+----------------
+class A{
+public:
+    A(int ia):a(ia){};
+private:
+    int a;
+}
+
+class B:public A{
+public:
+    void set(int ia){
+        this->a = ia;
+    }
+}
+这里的B类在set函数里尝试访问A的private成员变量a，是会报错的，
+private是不能被子类访问的
+----------------
+    </pre></code>
+
+    <h3>class于struct</h3>
+    <code><pre>
+class和strcut基本相同，唯一不同的地方在于，使用class其成员默认是private，
+使用struct其成员默认是public
+    </pre></code>
+</div>
