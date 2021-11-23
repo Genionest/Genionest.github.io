@@ -1,8 +1,18 @@
 <div class="maincontent-txt">
-    <h2>运算符重载</h2>
+    <h2>运算符重载:基本规则;函数原型;类型转换</h2>
+    <ul>
+        <a href="part-a">基本规则</a><br>
+        <a href="part-b">函数原型</a><br>
+        <a href="part-c">类型转换</a><br>
+    </ul>
+
+<pre>
+就是让两个相同的类可以进行加减等运算符操作
+</pre>
+
+    <div id="part-a"></div>
     <h3>基本规则</h3>
     <pre>
-就是让两个相同的类可以进行加减等运算符操作
 ---------------------
 class A{
 public:
@@ -75,6 +85,8 @@ int main(){
 }
 ---------------------
     </pre>
+
+    <div id="part-b"></div>
     <h3>运算符原型</h3>
     <pre>
 对于 + - * / % ^ & | ~
@@ -128,6 +140,8 @@ public:
 // 调用时，++a等价于a.operator++()，a++等价于a.operator++(0)
 ---------------------
     </pre>
+
+    <div id="part-c"></div>
     <h3>运算符重载-类型转换</h3>
     <pre>
 像Class Object = Value 解释为 Class Object = Class(Value)

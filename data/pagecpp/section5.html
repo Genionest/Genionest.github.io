@@ -1,10 +1,24 @@
 <div class="maincontent-txt">
     <h2>const变量; 引用; 向上造型; 多态</h2>
+    <ul>
+        <a href="part-a">const变量</a><br>
+        <a href="part-b">引用</a><br>
+        <a href="part-c">向上造型</a><br>
+        <a href="part-d">多态</a><br>
+    </ul>
+
+    <pre>
+const，让一个变量变成“只读”
+引用其实就类似于指针，只是引用不用频繁去写*号
+向上造型，就是子类类型转换成父类类型，类似于double转为int
+多态就是指针调用类函数时，调用的时这个类自己的，而不触发向上造型
+    </pre>
+    
+    <div id="part-a"></div>
     <h3>const变量</h3>
 <pre>
 const，让一个变量变成“只读”
 基本用法与C语言里相同
-
 extern const，extern是引用其他文件的全局变量
 extern const 一个变量时，这个变量在它的源文件里不需要是const，
 在当前文件内会变为“只读”
@@ -37,6 +51,7 @@ a2.fn();  // 调用不带const的fn
 ---------------------
 </pre>
 
+    <div id="part-b"></div>
     <h3>引用</h3>
 <pre>
 引用其实就类似于指针，只是引用不用频繁去写*号
@@ -102,6 +117,7 @@ int& a = fn2(1);  // 正确
 ---------------------
 </pre>
 
+    <div id="part-c"></div>
     <h3>向上造型(upcast)</h3>
     <pre>
 向上造型，就是子类类型转换成父类类型，类似于double转为int
@@ -116,8 +132,11 @@ bp->fn(); br.fn(); // 这里调用的是A的fn函数
 ---------------------
 </pre>
 
+<div id="part-d"></div>
 <h3>多态性</h3>
 <pre>
+多态就是指针调用类函数时，调用的时这个类自己的，而不触发向上造型
+
 对于上述的bp和br，他们获得的是B类的地址，虽然我们将bp和br声明为A类，
 但如果我们调用bp和br的fn时，希望调用的是他们所指向的类（即B类）的fn
 那么在定义A类的fn时，需要在前面加上修饰符virtual，就是多态
