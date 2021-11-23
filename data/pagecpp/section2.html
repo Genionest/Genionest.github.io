@@ -1,16 +1,18 @@
 <div class="maincontent-txt">
+    <h2>类的继承; private,protect,public; class与struct</h2>
     <h3>类的继承</h3>
     <code><pre>
 class A{
 public:
     A(int ia):a(ia){};
     int a;
-}
+};
 
 class B: A{
 pubilc:
-    B(): A(1){};  // 启用父类的构造函数
-}
+    B(int ib): A(1), b(ib){};  // 启用父类的构造函数
+    int b;
+};
     </pre></code>
     
     <h3>private, public, protect</h3>
@@ -29,7 +31,7 @@ public:
     };
 private:
     int i;
-}
+};
 
 int main(){
     A a(2); A b(1);
@@ -43,20 +45,20 @@ public:
     A(int ia):a(ia){};
 private:
     int a;
-}
+};
 
 class B:public A{
 public:
     void set(int ia){
         this->a = ia;
-    }
-}
+    };
+};
 这里的B类在set函数里尝试访问A的private成员变量a，是会报错的，
 private是不能被子类访问的
 ----------------
     </pre></code>
 
-    <h3>class于struct</h3>
+    <h3>class与struct</h3>
     <code><pre>
 class和strcut基本相同，唯一不同的地方在于，使用class其成员默认是private，
 使用struct其成员默认是public

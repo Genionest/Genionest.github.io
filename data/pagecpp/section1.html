@@ -1,4 +1,5 @@
 <div class="maincontent-txt">
+    <h2>类的创建; new与delete</h2>
     <h3>类的创建</h3>
     <code><pre>
 -----------------
@@ -12,12 +13,20 @@ public:
     };
 private:
     int i;
-}
+};
+
+class B{
+public:
+    B():i(0){};
+    int i;
+};
 
 int main(){
     A a(1);
 
     a.fn();
+
+    B b;  // 这里要是用 B b();是会报错的，和其他opp语言不一样
 
     return 0;
 }
@@ -45,7 +54,7 @@ public:
 private:
     int b;
     void fn2();
-}
+};
 
 #endif
 ----------------
@@ -58,7 +67,7 @@ using namespace std;
 
 A::A(int a, int b):a(a), b(b){}  // 初始化列表来初始化，不要在函数里赋值初始化
 
-A::~A(){}
+A::~A(){};
 
 void A::fn(){
     cout &lt;&lt; this-&gt;a;  // this就相当于这个类本身

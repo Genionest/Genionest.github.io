@@ -1,0 +1,35 @@
+<div class="maincontent-txt">
+    <h3>内联函数</h3>
+    <code><pre>
+函数的调用是有额外的开销的，
+使用inline(内联函数)就可以减少这个开销
+
+------------------------
+inline void f(int i){
+    return i*2;
+};
+------------------------
+
+class A:{
+public:
+    A(int ia):a(ia){};  // 在类里面定义函数，会自动视为inline函数
+};
+------------------------
+
+// 假设是.h文件（头文件）内
+class A:{
+public:
+    A();
+    int i;
+};
+
+inline A::A(int ia)a(ia){};  // 将inline写在类外面，不会显得臃肿
+
+------------------------
+inline函数类似于预处理，编译器不会生成该函数，而是替换到该函数调用的部分，
+相较于define，inline函数可以对参数类型进行检查
+
+因此，在工程文件里，inline函数的body也要写在.h文件里，由于.h里已经有了
+函数实体，.cpp里就不需要再写了
+    </pre></code>
+</div>

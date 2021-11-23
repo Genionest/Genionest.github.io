@@ -1,0 +1,175 @@
+<div class="maincontent-txt">
+    <h2>const变量; 引用; 向上造型; 多态</h2>
+    <h3>const变量</h3>
+<pre>
+const，让一个变量变成“只读”
+基本用法与C语言里相同
+
+extern const，extern是引用其他文件的全局变量
+extern const 一个变量时，这个变量在它的源文件里不需要是const，
+在当前文件内会变为“只读”
+
+const指针（只看*在const的前面还是后面）
+---------------------
+char* const q = "abc";  // q是“只读”，*q不是
+char const* q = "abc";  // *q是“只读”, q不是
+const char* q = "abc";  // 和char const* q一样
+---------------------
+
+const一个类，这个类的属性就变为“只读”
+
+---------------------
+class A{
+    public:
+    const int i; // 这个变量需要初始化列表来赋值，因为它无法修改
+    A(int ia):i(ia) {};
+    fn() const{};  // 表明这个函数不能对A的属性进行修改
+    // 其实是const了this，因此非成员函数不能这么做
+    fn();  // 与上面一个fn形成重载，
+    // 看上去这两个事相同的，但上面参数表是const this，下面是this
+    // 当类调用fn时，第一个fn在类是const时调用，第二个fn在类不是const时调用
+};
+
+const A a1(1);
+A a2(1);
+a1.fn();  // 调用带const的fn
+a2.fn();  // 调用不带const的fn
+---------------------
+</pre>
+
+    <h3>引用</h3>
+<pre>
+引用其实就类似于指针，只是引用不用频繁去写*号
+---------------------
+int p = 0;
+int& q = p;
+const int* pp = &p;
+q = 1;  // q就等价于*pp，如果q是对象，引用函数也是q.fn，相当于(*pp).fn
+---------------------
+
+引用和指针的区别：
+1.引用必须指向一个对象，不能指向null
+2.引用指向一个对象后，就不能再指向其他对象了
+（引用其实就等于是const指针。对于int* const p = i; p不可改变，但是*p可改变）
+
+---------------------
+int x = 0;
+int y = 1;
+int z;
+int& a = x;
+int& b = y;
+z = a;  // 相当于int *p = x; z = *p;
+a = 1;  // 此时x的值也为1
+b = a;  // y的值变为x的值，而非b指向了a指向的x，这里和指针不同
+// 因为引用指向一个对象后，就不可改变
+
+int& c = a; // 错误，没有引用的引用
+int&* p;  // 错误，没有引用的指针
+int*& p;  // 可以有指针的变量
+
+void fn(int& i){
+    cout &lt;&lt; i;
+}
+fn(a);
+
+int& fn2(int& i){
+    i++;
+    return i;
+}
+
+int& fn3(int i){
+    int& j = i;
+    return j; // 错误，和C一样，不能返回作为局部变量的指针
+}
+---------------------
+函数参数表里的const 引用
+---------------------
+int fn(int& x){
+    return x;
+}
+
+int fn2(const int& x){  
+    /* 参数表里是const引用，那么传参时可以直接传入这个类型的值，
+    而不必是这个类型的引用，编译器对此进行处理*/
+    return x;
+}
+
+int i = 1; int &j = i;
+
+int& a = fn(1);  // 错误
+int& a = fn(j);  // 正确
+int& a = fn2(1);  // 正确
+---------------------
+</pre>
+
+    <h3>向上造型(upcast)</h3>
+    <pre>
+向上造型，就是子类类型转换成父类类型，类似于double转为int
+
+A是一个类，B是A的子类，A，B都有fn函数，但B的fn和A不一样
+---------------------
+B b;
+A* bp = &b;
+A& br = b;
+
+bp->fn(); br.fn(); // 这里调用的是A的fn函数
+---------------------
+</pre>
+
+<h3>多态性</h3>
+<pre>
+对于上述的bp和br，他们获得的是B类的地址，虽然我们将bp和br声明为A类，
+但如果我们调用bp和br的fn时，希望调用的是他们所指向的类（即B类）的fn
+那么在定义A类的fn时，需要在前面加上修饰符virtual，就是多态
+要达到多态，必须是通过指针或者引用，而不能是对象本身
+
+静态绑定：向上造型那种调用固定类的方法（不带virtual），就是静态绑定
+动态绑定：多态类那种调用指针所指对象的方法（带virtual），就是动态绑定
+---------------------
+class A{
+public:
+    virtual void fn(){
+        expression1;
+    };  
+    /* 成员函数用virtual修饰后，其后代的同名函数都会
+    变成virtual修饰，即使你没有写virtual，
+    但最好还是写上，让你看代码时知道是virtual*/
+    A(){};
+};
+
+class B: public A{
+public:
+    virtual void fn(){
+        expression2;  // 与A中的不同，完成了覆盖
+    };
+    B(){};
+};
+
+A a;
+B b;
+
+A* bp = &b;
+A& br = b;
+bp->fn(); br.fn();  // 这里调用的就是B类的fn
+---------------------
+多态的实现，带有virtual函数的类会额外带上一个指针vtable，指向一个表，
+这个表里保存有这个类的所有virtual函数，所以同一个类的vtable是一样的。
+---------------------
+class A{
+public:
+    virtual A* newClass();
+    virtual A& clone();
+    virtual A self();
+};
+
+class B: public A{
+public:
+    virtual B* newClass();
+    virtual B& clone();
+    virtual B self();  // 错误，主要是因为多态要通过指针和引用来实现
+};
+---------------------
+使用virtual之后，析构函数就会带上virtual，即使你没有加
+    </pre>
+
+</div>

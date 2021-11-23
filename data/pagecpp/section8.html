@@ -1,0 +1,184 @@
+<div class="maincontent-txt">
+    <h2>运算符重载</h2>
+    <h3>基本规则</h3>
+    <pre>
+就是让两个相同的类可以进行加减等运算符操作
+---------------------
+class A{
+public:
+    A(int ii):i(ii){};
+    const A operator+(A& that) const{
+    /* 定义了两个A类相加，参数中有that是因为+是双目运算符 */
+        return A(this->i + that.i);
+    };
+    const A operator-() const{
+    // 这里不是相减，因为没有参数，所以是定义了-A类的单目运算符，
+        return A(-this->i);
+    };
+private:
+    int i;
+};
+
+// 也可以定义成全局函数
+// 这里就需要两个参数了，因为不是在类里面
+A operator+(A& left, A& right){
+    return A(left.i + right.i);
+}
+
+int main(){
+    A a(1), b(2);
+    A c = a+b;
+    // 这里的c的是A(3)
+
+    return 0;
+}
+---------------------
+运算符重载只能重载给定的一些运算符，因为提供的operatorXXX函数是固定的，
+运算符优先级不变
+
+关于类型转换，如果两个类型不相同，编译器会尝试赋值转定义
+Class Object = Value变成Class Object = Class(Value)
+来进行类型转换
+---------------------
+class A{
+public:
+    A(int i):i(i){};
+    A(B& o){
+        this->i = o.i;
+    };
+    A operator+(A& that) const{
+        return A(this->i + that.i);
+    };
+    int i;
+};
+
+class B{
+public:
+    B(int i):i(i){};
+    int i;
+}
+
+int main(){
+    A a(1);
+    B b(2);
+    A c = a + 3;  // 等同于 A c = a + A(3);
+    A c = a + 3.1; /* 因为函数原型是A(int i)，传入double是可以的，
+    3.1会自动转换类型为int型 */
+    A c = a + b;  // 等同于 A c = a + A(b);
+    A c = 3 + a;  // 错误
+    /* 运算符进行什么操作是根据前一个对象来判断的
+    之前的前一个对象是A对象，所以是A的operator,
+    但这里前一个对象是3，所以这里的+就是整数相加 */
+    A c = 3 + 1;  // 等同于 A c = A(4);  上面讲的赋值转定义
+
+    return 0;
+}
+---------------------
+    </pre>
+    <h3>运算符原型</h3>
+    <pre>
+对于 + - * / % ^ & | ~
+---------------------
+const T operatorX(const T& left, const T& right)const;
+---------------------
+对于 ! && || &lt; &lt;= == != &gt;= &gt;
+---------------------
+bool operatorX(const T& left, const T& right)const;
+/* 对于关系运算符，只需要定义 == 和 &lt;，其他的可通过之前定义的
+关系运算符来实现 */
+
+// 对于 = 运算符，要判断是不是等于自己
+T& T::operator=(const T& that){
+    // 如果存在动态分配内存，不检测时可能会出问题
+    if( this != &that ){  
+        // 进行赋值操作
+    }
+    return *this;
+}
+---------------------
+对于 []
+---------------------
+T& T::operator[](int index);
+/* T[x]是要作为左值的，所以返回值不能为const；因为涉及到赋值，
+所以后面也不能加const；因为返回的是T自身的内容，而非新的T，
+所以返回&T节省资源；参数只能是int */
+---------------------
+对于 ++ --
+---------------------
+class A{
+public:
+    A(){};
+    int i;
+    const A& operator++(){  // 没有参数就是++a
+        // 因为返回的是修改后的内容，所以可以将自身返回，A&节省资源
+        *this += 1;  /* 因为自身只有一个int，
+        所以通过指针获取的也就是这个成员int */
+        return *this;
+    }
+    const A operator++(int){  // 有参数就是a++
+        /* 因为返回的是修改前的内容，而自身是需要修改的， 
+        所以需要一个新的A来返回 */
+        A old(*this);
+        ++(*this);  // 通过之前定义的++操作来实现
+        return old;
+    }
+    const A& operator--(){};  // 没有参数的是--a
+    const A operator--(int){};  // 有参数的是a--
+}
+// 调用时，++a等价于a.operator++()，a++等价于a.operator++(0)
+---------------------
+    </pre>
+    <h3>运算符重载-类型转换</h3>
+    <pre>
+像Class Object = Value 解释为 Class Object = Class(Value)
+其实就是一种类型转换，不过Class对应的构造函数里只能有一个参数
+运算符重载里也提供了这种类型转换的功能
+---------------------
+operator Type() const{}; 
+/* 没有类型，因为函数名就是要返回的类型，
+const保证自身不改变，毕竟转换类型不需要改变自身，返回一个新的值即可 */
+
+class A{
+public:
+    A(){};
+    operator B() const{
+        B o;
+        return o;
+    };
+};
+
+class B{
+public:
+    B(){};
+};
+
+int main(){
+    A a;
+    B b = a;
+    b = a;  /* 和int = double一样，赋值过程中也是可以自动类型转换的，
+    不过对于自定义的类而言，需要对应的构造函数或类型转换运算符重载 */
+
+    return 0;
+}
+---------------------
+如果希望在赋值是不自动发生类型转换，即使有对应的构造函数，可以加上
+explicit修饰符
+---------------------
+class A{
+public:
+    A(){};
+    explicit A(B& o){};  // 在赋值时就无法通过这个构造函数自动转换类型了
+};
+---------------------
+但一般我们还是不希望编译器自动帮我们去进行类型转换，
+合适的做法时像tostring一样，编写一个函数，我们可以在代码中清晰的看到
+这里进行了类型转换
+    </pre>
+    <h3>常见的类型转换</h3>
+    <pre>
+char=>short=>int=>float=>double
+int=>long
+T=>T&, T&=>T, T*=>void*, T[]=>T*, T*=>T[], T=>const T
+(T是自定义的类型)
+    </pre>
+</div>

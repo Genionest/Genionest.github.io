@@ -1,0 +1,69 @@
+<div class="maincontent-txt">
+    <h2>模板</h2>
+    <pre>
+如果想实现想一些弱类型oop语言那样，不指定特定类型作为参数，可以使用模板
+
+函数模板
+---------------------
+template&lt;class T&gt;
+void fn(T t, T u){};  // 这里代表两个参数是相同的类
+
+int main(){
+    f(1, 2);  
+    f(1.1, 2.2);
+    // 参数表是两个相同的类型
+    f(1, 1.2);  // 错误，使用模板后，就不会在进行类型转换了
+
+    return 0;
+}
+---------------------
+类模板
+---------------------
+template&lt;class M, class N&gt;
+class A{
+public:
+    A(M m, N n):m(m), n(n){};
+    const N& getN() const;  /* 如果后面有const，函数声明时也要有const，
+    因为写在后面的const，相当于是参数表里写const this */
+    const M& getM() const;
+    M m;
+    N n;
+}
+
+// 在类外面定义类函数是，每个类函数上都要带个template
+template&lt;class M, class N&gt;
+// 在定义时类后面还要跟上&lt;M, N&gt;
+const N& A&lt;M, N&gt;::getN() const{};
+
+template&lt;class M, class N&gt;
+const M& A&lt;M, N&gt;::getM() const{};
+
+int main(){
+    // 在创建新变量时，也要跟上&lt;&gt;，但里面需要时具体的某个类
+    A&lt;int, double&gt; a(1, 1.0);
+    A&lt;int, char&gt; b(0, 'a');
+    a.getM(); b.getN();
+
+    return 0;
+}
+---------------------
+也可以通过模板继承任意类的
+---------------------
+template &lt;T&gt;
+class A:T{
+public:
+    A():T(){};
+}
+
+class B{
+public:
+    B(){};
+};
+
+int main(){
+    A&lt;B&gt; a();
+    return 0;
+}
+---------------------
+    </pre>
+</div>

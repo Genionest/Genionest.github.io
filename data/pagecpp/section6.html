@@ -1,0 +1,80 @@
+<div class="maincontent-txt">
+    <h3>拷贝构造</h3>
+    <pre>
+先看一个东西， Class Object = Value; 等价于 Class Object(Value);
+前提是有对应的构造函数
+---------------------
+class A{
+public:
+    A(int ii):i(ii) {};
+    int i;
+};
+
+A a = 10;  // 等价于A a(10);
+--------------------- 
+再看一个东西，Class Object1 = Object2;
+在创建Object1时不会调用Class的构造函数，而是复制Object1给Object2，
+这就是拷贝构造
+--------------------- 
+class A{
+    public:
+    A(){ cout&lt;&lt;"A() "&lt;&lt;endl };
+    ~A(){ cout&lt;&lt;"~A() "&lt;&lt;endl };
+};
+
+A a1;
+A a2 = a1;  
+/* 此时a2没有通过构造函数创建，而是直接复制了a1个成员的值，
+这个复制，是浅复制。（也就是如果存在指针，直接复制指针，
+而非创建新的同类型指针，并赋予地址相同的值）*/
+a2 = a1; // class就是struct，所以class的赋值也和struct一样是浅复制
+
+$输出:
+A() 
+~A() 
+~A()
+---------------------
+如果我们希望Class Object1 = Object2; 在创建Object1时调用
+Class的构造函数，结合第一个提到的点，我们可以定义一个传入
+const Class&参数的构造函数
+---------------------
+class A{
+public:
+    A() { cout&lt;&lt;"A()"&lt;&lt;endl};
+    A(const A& o) { 
+        /*这里只能是传入const A& o，而不能是A o，因为传值给函数时，
+        函数是创建同类型临时变量去接受参数的值，就会导致 函数传值时
+        A o = A parameter;（形参），然后又触发了o的构造函数，等价
+        于A o(parameter);，再出现上述的情形，变成死循环*/
+        cout&lt;&lt;"A()-2"&lt;&lt;endl 
+    };
+};
+
+A a;
+A b = a;
+$输出:
+A()
+A()-2
+---------------------
+如果你不希望拷贝构造发生，你可以定义一个传入const &Class参数的
+构造函数，并把它作为私有，那样，这个对象就不能用来复制，也不能作为
+参数存在了
+---------------------
+class A{
+public:
+    A() {};
+private:
+    A(const A& o) {};
+};
+---------------------
+建议在定义一个类时，都写下这三个函数
+---------------------
+class A{
+public:
+    A(){};
+    virtual ~A(){};
+    A(const A& o){};
+};
+---------------------
+    </pre>
+</div>
