@@ -1,0 +1,39 @@
+<div class="maincontent-txt">
+    <h3>异常</h3>
+    <ul>
+        <a href="#part-a">异常</a><br>
+    </ul>
+
+    <div id="part-a"></div>
+    <pre>
+throw 抛出异常
+try, catch 类似python里面
+---------------------
+try{
+    // 保护代码
+}catch( ExceptionName e1 ){
+    // 异常处理
+}catch( ExceptionName e2 ){  
+    // 异常处理
+}
+/* catch是从上到下检查的，
+如果异常是e1的子类，那么也会在e1处捕获，
+所以e2不能是e1的子类，因为异常不可能走到在e2处
+*/
+---------------------
+函数可以声明可能会抛出的异常
+---------------------
+void fn(): throw( ExceptionName1, ExceptionName2 )
+// 声明可能会抛出的异常
+{ 
+    // expression
+}
+
+void fn2(): throw(){  // 声明不会抛出异常
+    // expression2
+}
+
+// 如果出现了声明可能抛出的异常之外的异常，则会抛出异常类型错误的异常
+---------------------
+    </pre>
+</div>
