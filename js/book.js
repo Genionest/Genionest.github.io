@@ -41,6 +41,10 @@ $(document).ready(function(){
             "1-1 插入排序",
             "RAM",
         ],
+        [
+            ["Docker", "docker"],
+            "docker拉取镜像失败",
+        ],
     ];
     
     // 附录在这里增加, 对应("sheet%d/section%d.html", sheet, section)
