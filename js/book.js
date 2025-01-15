@@ -2,7 +2,7 @@ $(document).ready(function(){
     // 目录在这里增加, 对应("page%d/section%d.html", page, section)
     var book = [
         [
-            ["C语言", "c"],
+            ["C语言", "clang"],
             "链表",
             "交换两个int",
             "一些字符串函数",
