@@ -1,53 +1,54 @@
 <div class="maincontent-txt">
     <h1>添加镜像源</h1>
-    <p>
+    <code><pre>
         添加文件
         sudo vim /etc/docker/daemon.json
-    </p>
-    <p>
+    </pre></code>
+    <code><pre>
         {"registry-mirrors": [
             "https://mirror.ccs.tencentyun.com",
             "https://docker.nju.edu.cn",
             "https://docker.mirrors.ustc.edu.cn",
             "https://docker.m.daocloud.io",
             "https://registry.docker-cn.com"
-            ]
+            ] 
         }
-    </p>
-    <p>
+    </pre></code>
+    <code><pre>
         重启docker服务
         sudo systemctl daemon-reload
         sudo systemctl restart docker
-    </p>
-    <p>
+    </pre></code>
+    <code><pre>
         查看镜像源是否配置成功
         sudo docker info | grep Mirrors
+        
         如果能看到结果，则配置成功。
-    </p>
+    </pre></code>
     <p>
         <ol>
             <li>
-                腾讯云
+                腾讯云<br>
                 https://mirror.ccs.tencentyun.com
             </li>
             <li>
-                南京大学
+                南京大学<br>
                 https://docker.nju.edu.cn
             </li>
             <li>
-                中科大
+                中科大<br>
                 https://docker.mirrors.ustc.edu.cn
             </li>
             <li>
-                Daocloud镜像云
+                Daocloud镜像云<br>
                 https://docker.m.daocloud.io
             </li>
             <li>
-                Docker中国
+                Docker中国<br>
                 https://registry.docker-cn.com
             </li>
             <li>
-                网易云
+                网易云<br>
                 http://hub-mirror.c.163.com
             </li>
         </ol>

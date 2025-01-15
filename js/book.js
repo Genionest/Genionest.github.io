@@ -1,5 +1,6 @@
 $(document).ready(function(){
     // 目录在这里增加, 对应("page%d/section%d.html", page, section)
+    // 不要出现一个pagexxx是另一个pagexxxyy的子串
     var book = [
         [
             ["C语言", "clang"],

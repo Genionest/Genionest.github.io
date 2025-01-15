@@ -95,7 +95,7 @@ body{
 h4,h3,h2,h1,a{
     color: yellowgreen;
 }
-p, pre{
+p, pre, ol, ul, li{
     color: white;
     font-size: 20px;
 }
